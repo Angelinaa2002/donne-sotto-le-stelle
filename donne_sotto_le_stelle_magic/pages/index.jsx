@@ -42,6 +42,12 @@ tra ciò che siamo e ciò che ancora possiamo diventare.
 
 Perché ogni donna che brilla,
 illumina il cammino di un’altra.`}
+            <section className="tarot-cards">
+  <div className="card">🃏</div>
+  <div className="card">🌙</div>
+  <div className="card">⭐</div>
+</section>
+
           </pre>
         </div>
         <div className="mt-8">
