@@ -43,10 +43,19 @@ tra ciò che siamo e ciò che ancora possiamo diventare.
 Perché ogni donna che brilla,
 illumina il cammino di un’altra.`}
         
-<section className="tarot-cards">
-  <div className="card">🃏</div>
-  <div className="card">🌙</div>
-  <div className="card">⭐</div>
+<section className="py-16 text-center">
+  <h2 className="text-3xl mb-10">✨ Tarocchi ✨</h2>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+    <div className="bg-white/10 p-4 rounded-xl border border-purple-500 hover:scale-105 transition">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_08_Strength.jpg" alt="Forza" />
+    </div>
+    <div className="bg-white/10 p-4 rounded-xl border border-purple-500 hover:scale-105 transition">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_10_Wheel_of_Fortune.jpg" alt="Ruota della Fortuna" />
+    </div>
+    <div className="bg-white/10 p-4 rounded-xl border border-purple-500 hover:scale-105 transition">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg" alt="La Stella" />
+    </div>
+  </div>
 </section>
 
           </pre>
