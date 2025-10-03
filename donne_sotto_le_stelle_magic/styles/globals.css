@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook&family=Inter:wght@300;400;600;700&display=swap');
+
+:root { --gold: #f8e7a2; --purple: #5b2e8a; --mid: #07071a; }
+
+html,body,#__next{height:100%;}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  color:#e6e9ee;
+  background: radial-gradient(circle at 10% 10%, rgba(91,46,138,0.08), transparent 10%), linear-gradient(180deg,#071028 0%, #0f1b3d 60%, #020217 100%);
+}
+
+.stars { position:absolute; inset:0; background-image: radial-gradient(#fff 1px, transparent 1px), radial-gradient(#fff 1px, transparent 1px); background-size:2px 2px,3px 3px; opacity:.25; animation:drift 30s linear infinite; }
+@keyframes drift { from{transform:translateY(0)} to{transform:translateY(-200px)} }
+
+.font-gothic{ font-family:'UnifrakturCook', serif; }
+
+.card-magical { background: linear-gradient(135deg, rgba(15,27,61,0.6), rgba(11,16,32,0.55)); border:1px solid rgba(91,46,138,0.25); padding:1rem; border-radius:12px; backdrop-filter: blur(6px); }
+
+.h1-gothic{ font-family:'UnifrakturCook', serif; color:var(--gold); font-size:clamp(2rem,6vw,3.5rem); }
+
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:60}
