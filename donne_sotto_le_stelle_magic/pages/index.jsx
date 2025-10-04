@@ -66,6 +66,8 @@ illumina il cammino di un’altra.`}
       </main>
       {open && <BookingModal open={open} onClose={()=>setOpen(false)} />}
     </div>
+    )
+}
     
  <section className="py-16 text-center">
   <h2 className="text-3xl mb-6">Dove siamo</h2>
