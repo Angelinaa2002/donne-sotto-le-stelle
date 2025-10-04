@@ -66,16 +66,16 @@ illumina il cammino di un’altra.`}
       </main>
       {open && <BookingModal open={open} onClose={()=>setOpen(false)} />}
     </div>
-  )
-<section className="py-16 text-center">
-  <h2 className="text-3xl mb-6">📍 Dove siamo</h2>
+    
+ <section className="py-16 text-center">
+  <h2 className="text-3xl mb-6">Dove siamo</h2>
   <div className="max-w-4xl mx-auto">
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31104.099!2d15.072!3d37.5079!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1313e31f1c3b7b47%3A0xb5d2c024aaa0f!2sCatania%2C%20Sicilia!5e0!3m2!1sit!2sit!4v1695745743787!5m2!1sit!2sit"
+      src="https://www.google.com/maps/embed?pb=1m18!1m12!1m3!1d31104.099121d5.0721d3d7.5079!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x...твой_код..."
       width="100%"
       height="400"
       style={{ border: 0 }}
-      allowFullScreen=""
+      allowFullScreen
       loading="lazy"
     ></iframe>
   </div>
