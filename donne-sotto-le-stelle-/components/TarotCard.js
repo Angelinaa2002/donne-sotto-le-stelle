@@ -1,35 +1,27 @@
 "use client";
 import Image from "next/image";
 import styles from "./TarotCard.module.css";
-import { useState } from "react";
 
 export default function TarotCard({ imgSrc, title, text }) {
-  const [flipped, setFlipped] = useState(false);
-
-  const enableFlip = () => setFlipped(true);
-  const disableFlip = () => setFlipped(false);
-  const toggleFlip = () => setFlipped((v) => !v); // для тача
-
   return (
-    <div className={styles.card}>
-      <div
-        className={`${styles.inner} ${flipped ? styles.flipped : ""}`}
-        onMouseEnter={enableFlip}
-        onMouseLeave={disableFlip}
-        onClick={toggleFlip}
-        role="button"
-        aria-label={title}
-      >
-        {/* FRONT */}
+    <div className={styles.card} role="img" aria-label={title}>
+      <div className={styles.inner}>
+        {/* FRONT: картинка */}
         <div className={styles.front}>
-          <Image src={imgSrc} alt={title} width={220} height={380} priority />
+          <Image
+            src={imgSrc}
+            alt={title}
+            width={200}
+            height={320}
+            priority
+            className={styles.img}
+          />
         </div>
 
-        {/* BACK */}
+        {/* BACK: фиолетовый фон + золотой текст */}
         <div className={styles.back}>
           <h3 className={styles.title}>{title}</h3>
-          <p className={styles.text}>{text}</p>
-          <span className={styles.tip}>tocca / hover</span>
+          <p className={styles.desc}>{text}</p>
         </div>
       </div>
     </div>
