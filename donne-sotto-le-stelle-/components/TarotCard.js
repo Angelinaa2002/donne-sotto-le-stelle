@@ -6,7 +6,6 @@ export default function TarotCard({ imgSrc, title, text }) {
   return (
     <div className={styles.card} role="img" aria-label={title}>
       <div className={styles.inner}>
-        {/* FRONT: картинка */}
         <div className={styles.front}>
           <Image
             src={imgSrc}
@@ -18,7 +17,6 @@ export default function TarotCard({ imgSrc, title, text }) {
           />
         </div>
 
-        {/* BACK: фиолетовый фон + золотой текст */}
         <div className={styles.back}>
           <h3 className={styles.title}>{title}</h3>
           <p className={styles.desc}>{text}</p>
