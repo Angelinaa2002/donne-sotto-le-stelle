@@ -86,13 +86,11 @@ export default function Home() {
             title="🌙 Tarocchi-consulenze"
             text="Letture sul cammino, sulle relazioni e sulle risposte interiori."
           />
-
           <TarotCard
             imgSrc="/tarot2.png"
             title="🪷 Sessioni di Yoga"
             text="Lezioni individuali per ristabilire energia e corpo."
           />
-
           <TarotCard
             imgSrc="/tarot3.png"
             title="✨ Pratiche Energetiche"
