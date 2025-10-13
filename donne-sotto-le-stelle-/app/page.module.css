@@ -1,4 +1,4 @@
-:root{
+:global(:root){
   --bg-0: #07071c;
   --bg-1: #0a0c2e;
   --bg-2: #11164f;
