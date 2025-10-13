@@ -13,6 +13,13 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
+    {/* BG layers */}
+  <div className={styles.bg}>
+    <div className={styles.stars}></div>
+    <div className={styles.twinkle}></div>
+    {/* если позже добавишь видео, он будет здесь */}
+    <div className={styles.smoke}></div>
+  </div>
 
       {/* LOGO */}
       <div className={styles.logoContainer}>
