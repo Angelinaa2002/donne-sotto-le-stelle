@@ -2,6 +2,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useState } from "react";
+import TarotCard from "../components/TarotCard";
 
 export default function Home() {
   const [sent, setSent] = useState(false);
