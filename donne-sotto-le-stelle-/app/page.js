@@ -14,14 +14,13 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-    {/* BG layers */}
-  <div className={styles.bg}>
-    <div className={styles.stars}></div>
-    <div className={styles.twinkle}></div>
-    {/* если позже добавишь видео, он будет здесь */}
-    <div className={styles.smoke}></div>
-  </div>
-
+    <div className={styles.mist} />
+<div className={styles.starsSafe}>
+  <div className={`${styles.starDot} ${styles.s2}`} />
+  <div className={`${styles.starDot} ${styles.s3}`} />
+  <div className={`${styles.starDot} ${styles.s4}`} />
+  <div className={`${styles.starDot} ${styles.s5}`} />
+</div>
       {/* LOGO */}
       <div className={styles.logoContainer}>
         <div className={styles.logoFrame}>
