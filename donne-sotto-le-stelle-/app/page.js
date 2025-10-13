@@ -35,105 +35,113 @@ function TarotCard({ imgSrc, title, text }) {
 
       {/* Стили карточки — локально, гарантированно перекрывают всё */}
       <style jsx>{`
-        .tc-card {
-          width: 210px;
-          height: 340px;
-          perspective: 1200px;
-        }
-        .tc-inner {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          transform-style: preserve-3d;
-          -webkit-transform-style: preserve-3d;
-          border-radius: 16px;
-          transition: transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1),
-            box-shadow 0.3s ease, filter 0.3s ease;
-          box-shadow: 0 0 18px rgba(212, 175, 55, 0.25);
-        }
-        .tc-card:hover .tc-inner {
-          transform: rotateY(180deg);
-          filter: brightness(1.05);
-          box-shadow: 0 0 30px rgba(212, 175, 55, 0.5),
-            0 0 60px rgba(212, 175, 55, 0.25);
-        }
-        .tc-front,
-        .tc-back {
-          position: absolute;
-          inset: 0;
-          border-radius: 16px;
-          overflow: hidden;
-          border: 2px solid #d4af37;
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .tc-front {
-          z-index: 2;
-          background: radial-gradient(
-            70% 60% at 50% -10%,
-            rgba(255, 230, 140, 0.22),
-            transparent 60%
-          );
-          opacity: 1;
-          transition: opacity 0.2s linear;
-        }
-        .tc-img {
-          display: block;
-          width: 200px;
-          height: 320px;
-          object-fit: cover;
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-        }
-        .tc-back {
-          transform: rotateY(180deg);
-          z-index: 3;
-          opacity: 1; /* без анимации прозрачности — текст всегда виден */
-          text-align: center;
-          padding: 18px 14px;
-          color: #f5e6c8;
-          background: radial-gradient(
-              60% 60% at 50% 40%,
-              rgba(212, 175, 55, 0.18),
-              rgba(13, 0, 51, 0) 60%
-            ),
-            linear-gradient(180deg, #0b1240 0%, #040320 70%);
-          box-shadow: inset 0 0 40px rgba(212, 175, 55, 0.12);
-        }
-        .tc-card:hover .tc-front {
-          opacity: 0;
-          pointer-events: none;
-        }
-        .tc-title {
-          margin: 0 0 10px;
-          font-size: 1.1rem;
-          line-height: 1.25;
-          color: #ffd86b;
-          text-shadow: 0 0 10px rgba(255, 216, 107, 0.9),
-            0 0 18px rgba(255, 216, 107, 0.45);
-          font-weight: 600;
-        }
-        .tc-desc {
-          margin: 0;
-          font-size: 0.92rem;
-          line-height: 1.38;
-          opacity: 0.98;
-        }
+  .tc-card {
+    width: 210px;
+    height: 340px;
+    perspective: 1200px;
+  }
+  .tc-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    border-radius: 16px;
+    transition: transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1),
+      box-shadow 0.3s ease, filter 0.3s ease;
+    box-shadow: 0 0 18px rgba(212, 175, 55, 0.25);
+    isolation: isolate;                /* создаём новый stacking context */
+  }
+  .tc-card:hover .tc-inner {
+    transform: rotateY(180deg);
+    filter: brightness(1.05);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.5),
+      0 0 60px rgba(212, 175, 55, 0.25);
+  }
 
-        @media (min-width: 1200px) {
-          .tc-card {
-            width: 220px;
-            height: 355px;
-          }
-          .tc-img {
-            width: 210px;
-            height: 335px;
-          }
-        }
-      `}</style>
+  .tc-front, .tc-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid #d4af37;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    will-change: transform;
+  }
+
+  /* FRONT */
+  .tc-front {
+    z-index: 2;
+    background: radial-gradient(
+      70% 60% at 50% -10%,
+      rgba(255,230,140,.22),
+      transparent 60%
+    );
+    opacity: 1;
+    transition: opacity .2s linear;
+  }
+  .tc-img {
+    display:block;
+    width: 200px;
+    height: 320px;
+    object-fit: cover;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0.1px);      /* Safari: заставляем рисовать слой */
+  }
+
+  /* BACK */
+  .tc-back {
+    /* ключ: чуть выдвигаем назад 3D-слой, чтобы текст отрисовался */
+    transform: rotateY(180deg) translateZ(1px);
+    -webkit-transform: rotateY(180deg) translateZ(1px);
+    z-index: 3;
+    opacity: 1;                        /* всегда видимая задняя сторона */
+    text-align: center;
+    padding: 18px 14px;
+    color: #f5e6c8;
+    background:
+      radial-gradient(60% 60% at 50% 40%, rgba(212,175,55,.18), rgba(13,0,51,0) 60%),
+      linear-gradient(180deg, #0b1240 0%, #040320 70%);
+    box-shadow: inset 0 0 40px rgba(212,175,55,.12);
+  }
+
+  /* ЕЩЁ ключ: всем потомкам на бэке разрешаем отрисовываться в 3D */
+  .tc-back *, .tc-back *::before, .tc-back *::after {
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    transform: translateZ(2px);        /* выталкиваем текст вперёд */
+    position: relative;
+    z-index: 5;
+  }
+
+  .tc-card:hover .tc-front { opacity: 0; pointer-events: none; }
+
+  .tc-title {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+    line-height: 1.25;
+    color: #ffd86b;
+    text-shadow: 0 0 10px rgba(255,216,107,.9),
+                 0 0 18px rgba(255,216,107,.45);
+    font-weight: 600;
+  }
+  .tc-desc {
+    margin: 0;
+    font-size: .92rem;
+    line-height: 1.38;
+    opacity: .98;
+  }
+
+  @media (min-width: 1200px){
+    .tc-card { width: 220px; height: 355px; }
+    .tc-img  { width: 210px; height: 335px; }
+  }
+`}</style>
     </div>
   );
 }
