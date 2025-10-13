@@ -166,7 +166,6 @@ export default function Home() {
   {/* ВЕСЬ ОСТАЛЬНЫЙ КОНТЕНТ ОБЕРНИ В ЭТОТ DIV */}
   <div className={styles.content}>
     {/* LOGO, MANIFESTO, CHI-SONO, SERVIZI, PRENOTA, MAPPA — всё что было */}
-    ...весь твой текущий разметочный код...
   </div>
 
       {/* ЛОГО */}
