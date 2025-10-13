@@ -171,8 +171,8 @@ export default function Home() {
           <Image
             src="/logo.png"
             alt="Logo"
-            width={350}
-            height={350}
+            width={400}
+            height={400}
             className={styles.logo}
           />
         </div>
@@ -283,7 +283,7 @@ export default function Home() {
             <label>Email</label>
             <input type="email" required />
 
-            <button type="submit">Invia intenzione</button>
+            <button type="submit">Invia richiesta</button>
           </form>
         ) : (
           <div className={styles.thankyou}>
