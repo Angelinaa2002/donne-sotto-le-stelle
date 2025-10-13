@@ -156,14 +156,16 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      {/* фон: дым + звёзды (как у тебя было) */}
-      <div className={styles.mist} />
-      <div className={styles.starsSafe}>
-        <div className={`${styles.starDot} ${styles.s2}`} />
-        <div className={`${styles.starDot} ${styles.s3}`} />
-        <div className={`${styles.starDot} ${styles.s4}`} />
-        <div className={`${styles.starDot} ${styles.s5}`} />
-      </div>
+  {/* ✨ МАГИЧЕСКИЙ ФОН */}
+  <div className={styles.bg} />
+  <div className={styles.stars} />
+  <div className={`${styles.stars} ${styles.layer2}`} />
+  <div className={`${styles.stars} ${styles.layer3}`} />
+  <div className={styles.mist} />
+  {/* OPTIONAL: если добавишь видео /public/smoke.mp4, раскомментируй: */}
+  {/* <video className={styles.smokeVideo} autoPlay muted loop playsInline>
+      <source src="/smoke.mp4" type="video/mp4" />
+    </video> */}
 
       {/* ЛОГО */}
       <div className={styles.logoContainer}>
