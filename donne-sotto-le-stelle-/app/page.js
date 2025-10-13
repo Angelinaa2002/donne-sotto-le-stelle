@@ -168,7 +168,6 @@ export default function Home() {
     {/* LOGO, MANIFESTO, CHI-SONO, SERVIZI, PRENOTA, MAPPA — всё что было */}
     ...весь твой текущий разметочный код...
   </div>
-</main> 
 
       {/* ЛОГО */}
       <div className={styles.logoContainer}>
