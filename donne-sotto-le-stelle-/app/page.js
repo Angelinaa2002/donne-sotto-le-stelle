@@ -162,10 +162,13 @@ export default function Home() {
   <div className={`${styles.stars} ${styles.layer2}`} />
   <div className={`${styles.stars} ${styles.layer3}`} />
   <div className={styles.mist} />
-  {/* OPTIONAL: если добавишь видео /public/smoke.mp4, раскомментируй: */}
-  {/* <video className={styles.smokeVideo} autoPlay muted loop playsInline>
-      <source src="/smoke.mp4" type="video/mp4" />
-    </video> */}
+
+  {/* ВЕСЬ ОСТАЛЬНЫЙ КОНТЕНТ ОБЕРНИ В ЭТОТ DIV */}
+  <div className={styles.content}>
+    {/* LOGO, MANIFESTO, CHI-SONO, SERVIZI, PRENOTA, MAPPA — всё что было */}
+    ...весь твой текущий разметочный код...
+  </div>
+</main> 
 
       {/* ЛОГО */}
       <div className={styles.logoContainer}>
