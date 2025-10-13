@@ -92,14 +92,14 @@ export default function Home() {
     />
   </div>
 
-  <div className={styles.sessionInfo}>
-    <strong>Come si svolge una sessione?</strong><br />
-    1. Intenzione e domanda.<br />
-    2. Lettura / pratica.<br />
-    3. Consapevolezza e integrazione.<br />
-    4. Chiusura – raccomandazioni e supporto.
-  </div>
-</section>
+     <div className={styles.sessionInfo}>
+     <strong>Come si svolge una sessione?</strong><br />
+      1. Intenzione e domanda.<br />
+      2. Lettura / pratica.<br />
+      3. Consapevolezza e integrazione.<br />
+      4. Chiusura – raccomandazioni e supporto.
+   </div>
+      </section>
 
       {/* PRENOTA */}
       <section id="prenota" className={styles.sectionBlock}>
