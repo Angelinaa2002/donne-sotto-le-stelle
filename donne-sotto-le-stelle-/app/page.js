@@ -69,35 +69,25 @@ export default function Home() {
       </section>
 
       {/* SERVIZI */}
-      <section id="servizi" className={styles.sectionBlock}>
-        <h2 className="gold-text">Servizi</h2>
+      <div className={styles.cardsContainer}>
+  <TarotCard
+    imgSrc="/tarot1.png"
+    title="🌙 Tarocchi-consulenze"
+    text="Letture sul cammino, sulle relazioni e sulle risposte interiori."
+  />
 
-        <div className={styles.cardsContainer}>
-          <div className={styles.card}>
-            <Image src="/tarot1.png" alt="Tarocchi" width={200} height={350} />
-            <p>
-              🌙 Tarocchi-consulenze<br />
-              Letture sul cammino, sulle relazioni e sulle risposte interiori.
-            </p>
-          </div>
+  <TarotCard
+    imgSrc="/tarot2.png"
+    title="🪷 Sessioni di Yoga"
+    text="Lezioni individuali per ristabilire energia e corpo."
+  />
 
-          <div className={styles.card}>
-            <Image src="/tarot2.png" alt="Yoga" width={200} height={350} />
-            <p>
-              🪷 Sessioni di Yoga<br />
-              Lezioni individuali per ristabilire energia e corpo.
-            </p>
-          </div>
-
-          <div className={styles.card}>
-            <Image src="/tarot3.png" alt="Energetiche" width={200} height={350} />
-            <p>
-              ✨ Pratiche Energetiche<br />
-              Meditazioni, respiro, pulizia da vecchi schemi.
-            </p>
-          </div>
-        </div>
-
+  <TarotCard
+    imgSrc="/tarot3.png"
+    title="✨ Pratiche Energetiche"
+    text="Meditazioni, respiro, pulizia da vecchi schemi."
+  />
+</div>
         <div className={styles.sessionInfo}>
           <strong>Come si svolge una sessione?</strong><br />
           1. Intenzione e domanda.<br />
