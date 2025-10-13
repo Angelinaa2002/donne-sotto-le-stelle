@@ -1,0 +1,28 @@
+.nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+  z-index: 1000;
+  background: rgba(0, 0, 20, 0.5);
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid #d4af37;
+  box-shadow: 0 0 20px rgba(212,175,55,0.3);
+  backdrop-filter: blur(6px);
+}
+
+.link {
+  font-size: 1.2rem;
+  color: #d4af37;
+  text-shadow: 0 0 10px rgba(212,175,55,0.7);
+  transition: all 0.3s ease;
+}
+
+.link:hover {
+  color: #fff4d4;
+  text-shadow: 0 0 20px rgba(255,255,200,1);
+  transform: scale(1.1);
+}

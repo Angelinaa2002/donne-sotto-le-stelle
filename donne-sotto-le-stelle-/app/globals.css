@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cinzel Decorative', serif;
+  background: radial-gradient(circle at top, #0d0033, #000014 70%);
+  color: #f5e6c8;
+  overflow-x: hidden;
+}
+
+.gold-text {
+  color: #d4af37;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.8), 0 0 20px rgba(212,175,55,0.6);
+}
