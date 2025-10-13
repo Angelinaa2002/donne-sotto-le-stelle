@@ -69,33 +69,37 @@ export default function Home() {
       </section>
 
       {/* SERVIZI */}
-      <div className={styles.cardsContainer}>
-  <TarotCard
-    imgSrc="/tarot1.png"
-    title="🌙 Tarocchi-consulenze"
-    text="Letture sul cammino, sulle relazioni e sulle risposte interiori."
-  />
+<section id="servizi" className={styles.sectionBlock}>
+  <h2 className="gold-text">Servizi</h2>
 
-  <TarotCard
-    imgSrc="/tarot2.png"
-    title="🪷 Sessioni di Yoga"
-    text="Lezioni individuali per ristabilire energia e corpo."
-  />
+  <div className={styles.cardsContainer}>
+    <TarotCard
+      imgSrc="/tarot1.png"
+      title="🌙 Tarocchi-consulenze"
+      text="Letture sul cammino, sulle relazioni e sulle risposte interiori."
+    />
 
-  <TarotCard
-    imgSrc="/tarot3.png"
-    title="✨ Pratiche Energetiche"
-    text="Meditazioni, respiro, pulizia da vecchi schemi."
-  />
-</div>
-        <div className={styles.sessionInfo}>
-          <strong>Come si svolge una sessione?</strong><br />
-          1. Intenzione e domanda.<br />
-          2. Lettura / pratica.<br />
-          3. Consapevolezza e integrazione.<br />
-          4. Chiusura – raccomandazioni e supporto.
-        </div>
-      </section>
+    <TarotCard
+      imgSrc="/tarot2.png"
+      title="🪷 Sessioni di Yoga"
+      text="Lezioni individuali per ristabilire energia e corpo."
+    />
+
+    <TarotCard
+      imgSrc="/tarot3.png"
+      title="✨ Pratiche Energetiche"
+      text="Meditazioni, respiro, pulizia da vecchi schemi."
+    />
+  </div>
+
+  <div className={styles.sessionInfo}>
+    <strong>Come si svolge una sessione?</strong><br />
+    1. Intenzione e domanda.<br />
+    2. Lettura / pratica.<br />
+    3. Consapevolezza e integrazione.<br />
+    4. Chiusura – raccomandazioni e supporto.
+  </div>
+</section>
 
       {/* PRENOTA */}
       <section id="prenota" className={styles.sectionBlock}>
