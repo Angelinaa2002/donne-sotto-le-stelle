@@ -4,30 +4,25 @@ import styles from "./TarotCard.module.css";
 
 export default function TarotCard({ imgSrc, title, text }) {
   const [flip, setFlip] = useState(false);
-  const Title = title || "Servizio";
-  const Text =
-    text ||
-    "Descrizione del servizio. Se vedi questo testo, significa che i props sono arrivati.";
+  const Text = text || "Descrizione del servizio.";
 
   return (
     <div
-      className={styles.card}
-      onMouseEnter={() => setFlip(true)}
-      onMouseLeave={() => setFlip(false)}
-      onClick={() => setFlip((v) => !v)} // tap на телефоне
+      className={`${styles.card} ${flip ? styles.flipped : ""}`}
+      onClick={() => setFlip(v => !v)}
+      role="button"
+      aria-label={title}
     >
-      <div className={`${styles.inner} ${flip ? styles.isFlipped : ""}`}>
+      <div className={styles.inner}>
         {/* FRONT */}
-        <div className={`${styles.face} ${styles.front}`}>
-          <img src={imgSrc} alt={Title} className={styles.img} loading="lazy" />
+        <div className={styles.front}>
+          <img src={imgSrc} alt={title} className={styles.img} loading="lazy" />
         </div>
 
         {/* BACK */}
-        <div className={`${styles.face} ${styles.back}`}>
-          <div>
-            <h3 className={styles.title}>{Title}</h3>
-            <p className={styles.desc}>{Text}</p>
-          </div>
+        <div className={styles.back}>
+          <h3>{title}</h3>
+          <p>{Text}</p>
         </div>
       </div>
     </div>
