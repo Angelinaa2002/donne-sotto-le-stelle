@@ -71,6 +71,9 @@
   justify-content: center;
   overflow: visible;
   backdrop-filter: none !important;
+  /* секция и контейнер карт должны быть выше фоновых слоёв */
+.sectionBlock { position: relative; z-index: 2; }
+.cardsContainer { position: relative; z-index: 3; }
 }
 
 .card {
