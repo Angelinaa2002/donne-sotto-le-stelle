@@ -4,7 +4,6 @@ import styles from "./TarotCard.module.css";
 
 export default function TarotCard({ imgSrc, title, text }) {
   const [flipped, setFlipped] = useState(false);
-
   const toggle = () => setFlipped(v => !v);
 
   return (
