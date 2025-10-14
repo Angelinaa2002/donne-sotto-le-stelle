@@ -24,20 +24,35 @@
 /* --- ОБНОВИ фронт/бэк --- */
 .front{
   z-index: 2;
+  background:
+    radial-gradient(76% 60% at 50% 40%, rgba(255,230,140,.22), transparent 60%),
+    radial-gradient(66% 60% at 50% 60%, rgba(18,12,64,.45), rgba(8,6,30,.86) 70%);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  transform: translateZ(0.5px);           /* выталкиваем чуть вперёд */
+  transform: translateZ(0.5px);
+  transition: opacity .25s ease;       /* ← добавили плавность */
+}
+
+/* когда карта перевёрнута (hover на десктопе / класс .flipped на мобилке) */
+.card:hover .front, .flipped .front{
+  opacity: 0;                          /* ← прячем фронт гарантированно */
+  pointer-events: none;                /* ← чтобы ничего не перекрывало */
 }
 
 .back{
-  transform: rotateY(180deg) translateZ(1px); /* ключ для Safari */
+  transform: rotateY(180deg) translateZ(1px);
   -webkit-backface-visibility: hidden;
-  text-align: center;
   z-index: 3;
-  position: relative;
+  text-align: center;
+  padding: 18px 14px;
+  color: #f5e6c8;
+  background:
+    radial-gradient(66% 60% at 50% 40%, rgba(212,175,55,.10), rgba(13,6,51,.60)),
+    linear-gradient(180deg, #0e1240 0%, #080a20 70%);
+  box-shadow: inset 0 0 48px rgba(212,175,55,.12);
 }
 
-/* --- Вытолкни текст вперёд, чтобы точно рисовался --- */
+/* выталкиваем текст вперёд — фикс для Safari */
 .back *, .back *::before, .back *::after{
   backface-visibility: visible;
   -webkit-backface-visibility: visible;
