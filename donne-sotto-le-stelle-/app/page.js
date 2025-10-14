@@ -47,11 +47,11 @@ export default function Home() {
   return (
     <main className={styles.main}>
   {/* ✨ МАГИЧЕСКИЙ ФОН */}
-  <div className={styles.bg} />
-  <div className={styles.stars} />
-  <div className={`${styles.stars} ${styles.layer2}`} />
-  <div className={`${styles.stars} ${styles.layer3}`} />
-  <div className={styles.mist} />
+<div className={styles.bg}></div>
+<div className={styles.stars}></div>
+<div className={`${styles.stars} ${styles.layer2}`}></div>
+<div className={`${styles.stars} ${styles.layer3}`}></div>
+<div className={styles.mist}></div>
 
   {/* ВЕСЬ ОСТАЛЬНЫЙ КОНТЕНТ ОБЕРНИ В ЭТОТ DIV */}
   <div className={styles.content}>
