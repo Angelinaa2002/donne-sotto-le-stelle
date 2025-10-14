@@ -11,9 +11,23 @@
   will-change:transform;
 }
 
-/* ховер на десктопе и класс .flipped для мобилы */
 .card:hover .inner,
-.card.flipped .inner{ transform:rotateY(180deg); filter:brightness(1.05); }
+.card.flipped .inner {
+  transform: rotateY(180deg);
+}
+
+/* плавно скрыть лицевую сторону */
+.card:hover .front,
+.card.flipped .front {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* плавно показать заднюю сторону */
+.card:hover .back,
+.card.flipped .back {
+  opacity: 1;
+}
 
 .front,
 .back{
