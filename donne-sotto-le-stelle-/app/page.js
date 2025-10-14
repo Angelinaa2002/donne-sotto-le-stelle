@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { useState } from "react";
 
-/* === Встроенная карточка (без импорта и без внешних css-модулей) === */
+/* === Встроенная карточка (локальные стили внутри компонента) === */
 function TarotCard({ imgSrc, title, text }) {
   const tTitle = title || "✨ Servizio";
   const tText =
@@ -33,9 +33,115 @@ function TarotCard({ imgSrc, title, text }) {
         </div>
       </div>
 
-      {/* Стили карточки — локально, гарантированно перекрывают всё */}
+      {/* ЛОКАЛЬНЫЕ СТИЛИ КАРТОЧКИ */}
       <style jsx>{`
-  
+        .tc-card {
+          width: 220px;
+          height: 340px;
+          perspective: 1200px;
+        }
+        .tc-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+          transition: transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1),
+            box-shadow 0.3s ease, filter 0.3s ease;
+          border-radius: 16px;
+          box-shadow: 0 18px rgba(212, 175, 55, 0.25);
+          will-change: transform;
+        }
+        .tc-card:hover .tc-inner {
+          transform: rotateY(180deg);
+          filter: brightness(1.05);
+          box-shadow: 0 30px rgba(212, 175, 55, 0.5),
+            0 60px rgba(212, 175, 55, 0.25);
+        }
+
+        .tc-front,
+        .tc-back {
+          position: absolute;
+          inset: 0;
+          border-radius: 16px;
+          overflow: hidden;
+          border: 2px solid #d4af37;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          /* ключ: обе стороны не «просвечивают» в 3D */
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+
+        /* FRONT */
+        .tc-front {
+          z-index: 2;
+          opacity: 1;
+          transition: opacity 0.25s linear, transform 0.2s linear;
+          background: radial-gradient(
+              76% 60% at 50% 10%,
+              rgba(255, 230, 140, 0.22),
+              transparent 60%
+            ),
+            transparent;
+        }
+        .tc-img {
+          display: block;
+          width: 200px;
+          height: 320px;
+          object-fit: cover;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+
+        /* BACK */
+        .tc-back {
+          transform: rotateY(180deg) translateZ(1px); /* «вытолкнули» слой вперед */
+          z-index: 3;
+          opacity: 1;
+          text-align: center;
+          padding: 18px 14px;
+          color: #f5e6c8;
+          background:
+            radial-gradient(66% 60% at 50% 40%, rgba(212,175,55,.18), rgba(13,0,51,0) 60%),
+            linear-gradient(180deg, #001a2e 0%, #0b0432 70%);
+          box-shadow: inset 0 0 40px rgba(212, 175, 55, 0.12);
+        }
+
+        /* при флипе фронт гасим и отключаем клики, чтобы текст всегда кликался */
+        .tc-card:hover .tc-front {
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .tc-title {
+          margin: 0 0 10px;
+          font-size: 1.1rem;
+          line-height: 1.25;
+          color: #ffd66b;
+          text-shadow: 0 0 10px rgba(255, 216, 107, 0.9),
+            0 18px rgba(255, 216, 107, 0.45);
+          font-weight: 600;
+        }
+        .tc-desc {
+          margin: 0;
+          font-size: 0.92rem;
+          line-height: 1.38;
+          opacity: 0.98;
+        }
+
+        /* медиаправило — на узких экранах карточку делаем чуть ниже/у already ok */
+        @media (max-width: 480px) {
+          .tc-card {
+            width: 210px;
+            height: 335px;
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export default function Home() {
   const [sent, setSent] = useState(false);
 
@@ -46,12 +152,6 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-
-  {/* ВЕСЬ ОСТАЛЬНЫЙ КОНТЕНТ ОБЕРНИ В ЭТОТ DIV */}
-  <div className={styles.content}>
-    {/* LOGO, MANIFESTO, CHI-SONO, SERVIZI, PRENOTA, MAPPA — всё что было */}
-  </div>
-
       {/* ЛОГО */}
       <div className={styles.logoContainer}>
         <div className={styles.logoFrame}>
