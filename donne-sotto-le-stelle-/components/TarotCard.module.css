@@ -1,5 +1,5 @@
-/* Карточка-обёртка */
-.card {
+/* Обёртка карты (перспектива) */
+.card{
   width: 210px;
   height: 340px;
   perspective: 1200px;
@@ -9,50 +9,90 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Внутренний 3D-контейнер */
+/* Внутренняя «карусель», на ней рамка/свечение, и она крутится */
 .inner{
   position: relative;
   width: 100%;
   height: 100%;
+  border-radius: 18px;
+  border: 4px solid var(--gold);                  /* золотая рамка флипается вместе с картой */
+  box-shadow:
+    0 0 22px rgba(212,175,55,.35),                /* внешнее свечение */
+    inset 0 0 48px rgba(212,175,55,.12);          /* внутренний софт-свет */
+  background: radial-gradient(120% 100% at 50% 40%, rgba(255,230,140,.06), rgba(12,10,40,.25));
   transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;   /* Safari */
+  -webkit-transform-style: preserve-3d;
   transition: transform .8s ease;
-  isolation: isolate;                     /* свой композиционный слой */
+  isolation: isolate;
   will-change: transform;
 }
 
-/* --- ОБНОВИ фронт/бэк --- */
-.front{
-  z-index: 2;
-  background:
-    radial-gradient(76% 60% at 50% 40%, rgba(255,230,140,.22), transparent 60%),
-    radial-gradient(66% 60% at 50% 60%, rgba(18,12,64,.45), rgba(8,6,30,.86) 70%);
+/* Флип: hover (десктоп) + клик (мобилки) */
+.card:hover .inner{ transform: rotateY(180deg); }
+.flipped .inner{ transform: rotateY(180deg); }
+
+/* На устройствах без hover — полагаемся только на клик */
+@media (hover: none){
+  .card:hover .inner{ transform: none; }
+}
+
+/* Общая сторона */
+.face{
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  transform: translateZ(0.5px);
-  transition: opacity .25s ease;       /* ← добавили плавность */
+  overflow: hidden;
 }
 
-/* когда карта перевёрнута (hover на десктопе / класс .flipped на мобилке) */
-.card:hover .front, .flipped .front{
-  opacity: 0;                          /* ← прячем фронт гарантированно */
-  pointer-events: none;                /* ← чтобы ничего не перекрывало */
-}
-
-.back{
-  transform: rotateY(180deg) translateZ(1px);
-  -webkit-backface-visibility: hidden;
-  z-index: 3;
-  text-align: center;
-  padding: 18px 14px;
-  color: #f5e6c8;
+/* FRONT */
+.front{
+  z-index: 2;
+  transition: opacity .25s ease;
   background:
+    radial-gradient(76% 60% at 50% 40%, rgba(255,230,140,.18), transparent 60%),
+    radial-gradient(66% 60% at 50% 60%, rgba(18,12,64,.45), rgba(8,6,30,.86) 70%);
+}
+.img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* При флипе фронт убираем полностью, чтобы НЕ перекрывал текст */
+.card:hover .front,
+.flipped .front{
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  display: none !important;
+}
+
+/* BACK */
+.back{
+  transform: rotateY(180deg) translateZ(1px);     /* выносим вперёд */
+  z-index: 3;
+  position: relative;
+  text-align: center;
+  color: #f5e6c8;
+  padding: 18px 14px;
+
+  /* непрозрачный базовый фон, поверх — мягкие градиенты */
+  background-color: #0e1240;
+  background-image:
     radial-gradient(66% 60% at 50% 40%, rgba(212,175,55,.10), rgba(13,6,51,.60)),
     linear-gradient(180deg, #0e1240 0%, #080a20 70%);
-  box-shadow: inset 0 0 48px rgba(212,175,55,.12);
 }
 
-/* выталкиваем текст вперёд — фикс для Safari */
+/* Текст гарантированно над всеми слоями (фикс Safari/iOS) */
 .back *, .back *::before, .back *::after{
   backface-visibility: visible;
   -webkit-backface-visibility: visible;
@@ -61,81 +101,25 @@
   z-index: 4;
 }
 
-/* Флип по hover (десктоп) */
-.card:hover .inner { transform: rotateY(180deg); }
-
-/* Флип по клику (мобилки) */
-.flipped .inner { transform: rotateY(180deg); }
-
-/* На устройствах без hover отключаем hover-флип */
-@media (hover: none) {
-  .card:hover .inner { transform: none; }
-}
-
-/* Общие стили сторон */
-.face {
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-  box-shadow: 0 0 22px rgba(212,175,55,.35);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-/* FRONT */
-.front {
-  z-index: 2;
-  background:
-    radial-gradient(76% 60% at 50% 40%, rgba(255,230,140,.22), transparent 60%),
-    radial-gradient(66% 60% at 50% 60%, rgba(18,12,64,.45), rgba(8,6,30,.86) 70%);
-}
-
-.img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-/* BACK */
-.back {
-  transform: rotateY(180deg);
-  z-index: 3;
-  text-align: center;
-  padding: 18px 14px;
-  color: #f5e6c8;
-  background:
-    radial-gradient(66% 60% at 50% 40%, rgba(212,175,55,.10), rgba(13,6,51,.60)),
-    linear-gradient(180deg, #0e1240 0%, #080a20 70%);
-  box-shadow: inset 0 0 48px rgba(212,175,55,.12);
-  overflow: hidden;
-}
-
-/* Текст на обороте */
-.title {
+/* Типографика оборота */
+.title{
   margin: 0 0 8px;
   font-size: 1.08rem;
   line-height: 1.25;
   color: #ffd86b;
   text-shadow: 0 0 10px rgba(255,216,107,.45);
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: .04em;
 }
-
-.desc {
+.desc{
   margin: 0;
   font-size: .95rem;
-  line-height: 1.42;
+  line-height: 1.45;
   opacity: .98;
   word-break: break-word;
 }
 
-/* Немного больше на широких экранах */
-@media (min-width: 1120px) {
-  .card { width: 220px; height: 355px; }
+/* Чуть крупнее на больших экранах */
+@media (min-width: 1120px){
+  .card{ width: 220px; height: 355px; }
 }
