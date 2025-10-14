@@ -1,93 +1,86 @@
-/* components/TarotCard.module.css */
-
 .card {
-  width: 210px;
-  height: 340px;
-  perspective: 1000px;
-  margin: 10px;
-  isolation: isolate;            /* не даём фону/псевдоэлементам просачиваться */
+  width: 220px;
+  height: 350px;
+  perspective: 1000px; /* 3D */
 }
 
 .inner {
   position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;  /* 3D для передней/задней сторон */
-  transition: transform .75s cubic-bezier(.22,.61,.36,1);
-  will-change: transform;
+  transform-style: preserve-3d;
+  transition: transform .8s cubic-bezier(.22,.61,.36,1);
 }
 
-/* Ховер на ПК, тап-флип на мобильном даёт класс .flip — оба пути */
-.card:hover .inner,
-.card.flip .inner,
-.card:focus-within .inner {
+.isFlipped {
   transform: rotateY(180deg);
 }
 
-/* Общие стили для обеих сторон */
+/* ОБЩАЯ «сторона» карты */
 .face {
   position: absolute;
   inset: 0;
   border-radius: 16px;
   border: 2px solid #d4af37;
+  box-shadow:
+    0 0 0 2px rgba(212,175,55,.25) inset,
+    0 20px 50px rgba(212,175,55,.15);
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 0;
+  align-items: center;
+
+  /* КЛЮЧ! Скрывает невидимую сторону при развороте */
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  box-shadow: 0 0 20px rgba(212,175,55,.25) inset, 0 0 45px rgba(212,175,55,.15);
 }
 
-/* FRONT */
+/* Лицевая сторона (картинка) */
 .front {
-  background: radial-gradient(76% 60% at 50% 40%, rgba(255,230,140,.22), transparent 60%);
-}
-.img {
-  display: block;
-  width: 200px;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 12px;
+  background: radial-gradient(70% 60% at 50% 10%, rgba(255,230,160,.18), transparent 60%);
+  overflow: hidden;
 }
 
-/* BACK */
+/* Изображение на лицевой стороне */
+.img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  /* на всякий пожарный – тоже запретим «просвечивать» */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Оборотная сторона (текст) */
 .back {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg); /* развёрнута относительно фронта */
   background:
-    radial-gradient(66% 60% at 50% 40%, rgba(212,175,55,.10), rgba(13,6,51,0) 60%),
-    linear-gradient(180deg, #00124e 0%, #0a0620 70%);
+    radial-gradient(65% 60% at 50% 40%, rgba(212,175,55,.14), rgba(13,6,51,.0) 65%),
+    linear-gradient(180deg, rgba(16,8,90,.95) 0%, rgba(9,4,32,.85) 100%);
   color: #f5e6c8;
   text-align: center;
   padding: 18px 14px;
 }
 
-/* Внутри оборота текст кладём в отдельный слой, чтобы точно был выше всего */
-.backInner {
-  position: relative;
-  z-index: 2;
-  width: 92%;
-  filter: none;
-}
-
+/* Заголовок и текст на обороте */
 .title {
-  margin: 0 0 8px 0;
-  font-size: 1.15rem;
+  margin: 0 0 10px;
+  font-size: 1.1rem;
   line-height: 1.25;
   color: #ffd86b;
-  text-shadow: 0 0 10px rgba(255,216,107,.9), 0 18px 50px rgba(255,216,107,.45);
+  text-shadow: 0 0 10px rgba(255,216,107,.2), 0 0 18px rgba(255,216,107,.35);
   font-weight: 600;
 }
 
-.text {
+.desc {
   margin: 0;
-  font-size: .95rem;
+  font-size: .97rem;
   line-height: 1.38;
-  opacity: .98;
 }
 
-/* Чуть крупнее на больших экранах */
-@media (min-width: 1280px) {
-  .card { width: 220px; height: 355px; }
-  .img  { width: 210px; height: 335px; }
+/* На мобильных карты чуть меньше */
+@media (max-width: 480px) {
+  .card { width: 180px; height: 300px; }
 }
