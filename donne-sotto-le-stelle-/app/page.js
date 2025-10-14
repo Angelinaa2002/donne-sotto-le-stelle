@@ -299,7 +299,7 @@ export default function Home() {
 
       {/* MAPPA CATANIA */}
       <section className={styles.sectionBlock}>
-        <h2 className="gold-text">Catania, Sicilia</h2>
+        <h2 className="gold-text">Catania, Sicilia.</h2>
         <div className={styles.mapContainer}>
           <iframe
             src="https://www.openstreetmap.org/export/embed.html?bbox=15.03,37.45,15.16,37.56&layer=mapnik&marker=37.5079,15.0830"
