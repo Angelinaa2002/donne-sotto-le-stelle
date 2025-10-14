@@ -70,6 +70,7 @@
   flex-wrap: wrap;
   justify-content: center;
   overflow: visible;
+  backdrop-filter: none !important;
 }
 
 .card {
