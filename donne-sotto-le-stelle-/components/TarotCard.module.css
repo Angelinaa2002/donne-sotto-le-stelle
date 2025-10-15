@@ -1,75 +1,47 @@
-/* Размер карточки */
-.card{
-  width:220px;
-  height:340px;
-  perspective:1200px;
+.card {
+  perspective: 1200px;
 }
 
-/* Внешняя светящаяся рамка (как у тебя) */
-.frame{
-  position:relative;
-  width:100%;
-  height:100%;
-  border:2px solid #d4af37;
-  border-radius:16px;
-  padding:12px;                     /* чтобы рамка была видна */
-  box-shadow:0 0 24px rgba(212,175,55,.6),
-             0 0 4px rgba(212,175,55,.35);
-  background:transparent;
+.frame {
+  position: relative;
+  width: 220px;     /* ← если у тебя другие, просто поменяй */
+  height: 340px;    /* ← если у тебя другие, просто поменяй */
 }
 
-/* 3D-контейнер */
-.inner{
-  position:absolute;
-  inset:12px;                       /* совпадает с рамкой */
-  transform-style:preserve-3d;
-  transition:transform .6s cubic-bezier(.22,.61,.36,1);
-  will-change:transform;
-  border-radius:16px;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+/* Внутренняя часть, которая крутится */
+.inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform .6s cubic-bezier(.22,.61,.36,1);
 }
 
-/* Переворот */
-.flipped .inner{ transform:rotateY(180deg); }
+/* Когда flipped = true */
+.flipped .inner {
+  transform: rotateY(180deg);
+}
 
-/* Стороны */
+/* Обе стороны */
 .front,
-.back{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  backface-visibility:hidden;
-  -webkit-backface-visibility:hidden;
-  border-radius:16px;
+.back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* для Safari */
 }
 
-/* Передняя сторона как есть */
-.front{ z-index:2; }
-
-/* Задняя — сразу развёрнута на 180°, чтобы после флипа смотреть «лицом» */
-.back{
-  transform:rotateY(180deg);
-  z-index:1;
+/* Задняя сторона сразу повернута */
+.back {
+  transform: rotateY(180deg);
 }
 
-/* Изображение */
-.img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:none;
-}
-
-/* Немного интерактива */
-.card:hover .inner{ filter:brightness(1.03); }
-
-/* Адаптив — оставляю твой размер */
-@media (max-width:1180px){
-  .card{ width:220px; height:335px; }
+/* Картинка */
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* или cover, если нужно заполнение */
+  display: block;
 }
