@@ -218,20 +218,17 @@ export default function Home() {
 
         <div className={styles.cardsContainer}>
           <TarotCard
-            imgSrc="/tarot1.png"
-            title="🌙 Tarocchi-consulenze"
-            text="Letture sul cammino, sulle relazioni e sulle risposte interiori."
-          />
-          <TarotCard
-            imgSrc="/tarot2.png"
-            title="🪷 Sessioni di Yoga"
-            text="Lezioni individuali per ristabilire energia e corpo."
-          />
-          <TarotCard
-            imgSrc="/tarot3.png"
-            title="✨ Pratiche Energetiche"
-            text="Meditazioni, respiro, pulizia da vecchi schemi."
-          />
+  imgSrc="/tarot1.png"
+  backImgSrc="/tarot1-back.png"
+/>
+<TarotCard
+  imgSrc="/tarot2.png"
+  backImgSrc="/tarot2-back.png"
+/>
+<TarotCard
+  imgSrc="/tarot3.png"
+  backImgSrc="/tarot3-back.png"
+/>
         </div>
 
         <div className={styles.sessionInfo}>
