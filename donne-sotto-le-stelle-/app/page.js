@@ -84,7 +84,6 @@ export default function Home() {
     <TarotCard imgSrc="/tarot2.png" backImg="/tarot2-back.png" />
     <TarotCard imgSrc="/tarot3.png" backImg="/tarot3-back.png" />
   </div>
-</section>
         
         <div className={styles.sessionInfo}>
           <strong>Come si svolge una sessione?</strong>
