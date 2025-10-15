@@ -1,8 +1,8 @@
 "use client";
-
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useState } from "react";
+import TarotCard from "../components/TarotCard"; 
 
 /* === Встроенная карточка (локальные стили внутри компонента) === */
 function TarotCard({ imgSrc, title, text }) {
