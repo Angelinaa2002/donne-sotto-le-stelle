@@ -82,15 +82,15 @@ export default function Home() {
         <div className={styles.cardsContainer}>
           <TarotCard
             imgSrc="/tarot1.png"
-            backImgSrc="/tarot1-back.png"
+            backImg="/tarot1-back.png"
           />
           <TarotCard
             imgSrc="/tarot2.png"
-            backImgSrc="/tarot2-back.png"
+            backImg="/tarot2-back.png"
           />
           <TarotCard
             imgSrc="/tarot3.png"
-            backImgSrc="/tarot3-back.png"
+            backImg="/tarot3-back.png"
           />
         </div>
 
