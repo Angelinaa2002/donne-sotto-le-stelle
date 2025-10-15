@@ -1,78 +1,75 @@
-/* Размер карточки как раньше */
-.card {
-  width: 220px;
-  height: 340px;
-  perspective: 1200px; /* 3D */
+/* Размер карточки */
+.card{
+  width:220px;
+  height:340px;
+  perspective:1200px;
 }
 
-/* Внешняя светящаяся рамка */
-.frame {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border: 2px solid #d4af37;
-  border-radius: 20px;
-  box-shadow:
-    0 0 24px rgba(212, 175, 55, 0.5),
-    inset 0 0 0 2px rgba(212, 175, 55, 0.35);
-  background: transparent;
+/* Внешняя светящаяся рамка (как у тебя) */
+.frame{
+  position:relative;
+  width:100%;
+  height:100%;
+  border:2px solid #d4af37;
+  border-radius:16px;
+  padding:12px;                     /* чтобы рамка была видна */
+  box-shadow:0 0 24px rgba(212,175,55,.6),
+             0 0 4px rgba(212,175,55,.35);
+  background:transparent;
 }
 
-/* 3D контейнер */
-.inner {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-  transition: transform .6s cubic-bezier(.22,.61,.36,1), filter .3s;
+/* 3D-контейнер */
+.inner{
+  position:absolute;
+  inset:12px;                       /* совпадает с рамкой */
+  transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.22,.61,.36,1);
+  will-change:transform;
+  border-radius:16px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 /* Переворот */
-.flipped .inner {
-  transform: rotateY(180deg);
-}
+.flipped .inner{ transform:rotateY(180deg); }
 
-/* Обе стороны */
+/* Стороны */
 .front,
-.back {
-  position: absolute;
-  inset: 12px;              /* отступ, чтобы рамка была видна */
-  border-radius: 16px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(1px); /* чуть выталкиваем слой для четкости в Safari */
+.back{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  border-radius:16px;
 }
 
-/* Передняя сторона — сверху по оси Z */
-.front {
-  z-index: 2;
+/* Передняя сторона как есть */
+.front{ z-index:2; }
+
+/* Задняя — сразу развёрнута на 180°, чтобы после флипа смотреть «лицом» */
+.back{
+  transform:rotateY(180deg);
+  z-index:1;
 }
 
-/* Задняя сторона — развернута на 180° */
-.back {
-  transform: rotateY(180deg) translateZ(1px);
-  z-index: 1;
-}
-
-/* Картинка на стороне */
-.img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: none;
+/* Изображение */
+.img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:none;
 }
 
 /* Немного интерактива */
-.card:hover .inner {
-  filter: brightness(1.03);
-}
+.card:hover .inner{ filter:brightness(1.03); }
 
-/* Адаптив: на узких экранах оставим те же размеры (как у тебя) */
-@media (max-width: 1180px) {
-  .card { width: 220px; height: 335px; }
+/* Адаптив — оставляю твой размер */
+@media (max-width:1180px){
+  .card{ width:220px; height:335px; }
 }
