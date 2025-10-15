@@ -1,84 +1,78 @@
-.card{
-  width:220px;
-  height:340px;
-  perspective:1200px;
-  display:inline-block;
+/* Размер карточки как раньше */
+.card {
+  width: 220px;
+  height: 340px;
+  perspective: 1200px; /* 3D */
 }
 
-.inner{
-  position:relative;
-  width:100%;
-  height:100%;
-  transform-style:preserve-3d;
-  transition:
-    transform .66s cubic-bezier(.22,.61,.36,1),
-    filter .3s ease,
-    box-shadow .3s ease;
-  border-radius:18px;
-  will-change: transform;
+/* Внешняя светящаяся рамка */
+.frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #d4af37;
+  border-radius: 20px;
+  box-shadow:
+    0 0 24px rgba(212, 175, 55, 0.5),
+    inset 0 0 0 2px rgba(212, 175, 55, 0.35);
+  background: transparent;
 }
 
-/* чуть поднимаем яркость при ховере */
-.card:hover .inner{ filter:brightness(1.05); }
+/* 3D контейнер */
+.inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform .6s cubic-bezier(.22,.61,.36,1), filter .3s;
+}
 
-/* переворот */
-.flipped .inner{ transform:rotateY(180deg); }
+/* Переворот */
+.flipped .inner {
+  transform: rotateY(180deg);
+}
 
+/* Обе стороны */
 .front,
-.back{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.back {
+  position: absolute;
+  inset: 12px;              /* отступ, чтобы рамка была видна */
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  /* важно для флипа */
-  backface-visibility:hidden;
-  -webkit-backface-visibility:hidden;
-
-  border-radius:18px;
-
-  /* рамка + свечение */
-  box-shadow:
-    0 0 0 3px #d4af37 inset,                 /* золотая кромка */
-    0 0 0 10px rgba(0,0,0,0) inset,
-    0 0 24px rgba(212,175,55,.45),           /* мягкое свечение */
-    0 12px 25px rgba(0,0,0,.35);             /* падающая тень */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(1px); /* чуть выталкиваем слой для четкости в Safari */
 }
 
-/* лёгкий «сияющий» фон на лицевой стороне */
-.front{
-  z-index:2;
-  background:
-    radial-gradient(76% 60% at 50% 10%,
-      rgba(255,230,140,.22) 0%,
-      rgba(0,0,0,0) 60%),
-    transparent;
+/* Передняя сторона — сверху по оси Z */
+.front {
+  z-index: 2;
 }
 
-/* обратную сторону разворачиваем */
-.back{
-  transform:rotateY(180deg);
-  z-index:1;
+/* Задняя сторона — развернута на 180° */
+.back {
+  transform: rotateY(180deg) translateZ(1px);
+  z-index: 1;
 }
 
-.img{
-  display:block;
-  width:200px;
-  height:320px;
-  object-fit:cover;
-  border-radius:12px;
-
-  /* тонкая внутренняя золотая рамка + тень */
-  box-shadow:
-    0 0 0 2px #d4af37 inset,
-    0 10px 20px rgba(0,0,0,.35);
-
-  /* фикс слоя для Safari/3D */
-  transform: translateZ(1px);
+/* Картинка на стороне */
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: none;
 }
 
-@media (min-width:1180px){
-  .card{ width:240px; height:360px; }
-  .img { width:220px; height:340px; }
+/* Немного интерактива */
+.card:hover .inner {
+  filter: brightness(1.03);
+}
+
+/* Адаптив: на узких экранах оставим те же размеры (как у тебя) */
+@media (max-width: 1180px) {
+  .card { width: 220px; height: 335px; }
 }
