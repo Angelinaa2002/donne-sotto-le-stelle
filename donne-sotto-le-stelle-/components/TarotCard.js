@@ -1,30 +1,48 @@
 "use client";
+
 import { useState } from "react";
 import styles from "./TarotCard.module.css";
 
-export default function TarotCard({ imgSrc, title, text }) {
+export default function TarotCard({ imgSrc, backImg, alt = "Tarot card" }) {
   const [flipped, setFlipped] = useState(false);
-  const tTitle = title || "Servizio";
-  const tText  = text  || "Descrizione del servizio.";
 
-  const toggle = () => setFlipped(v => !v);
+  const handlers = {
+    onMouseEnter: () => setFlipped(true),
+    onMouseLeave: () => setFlipped(false),
+    onTouchStart: () => setFlipped((f) => !f), // tap на телефоне
+    onClick: () => setFlipped((f) => !f),      // клик на десктопе
+  };
 
   return (
     <div
       className={`${styles.card} ${flipped ? styles.flipped : ""}`}
       role="button"
-      tabIndex={0}
-      aria-pressed={flipped}
-      onClick={toggle}
-      onKeyDown={(e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); toggle(); } }}
+      aria-label={alt}
+      {...handlers}
     >
       <div className={styles.inner}>
-        <div className={`${styles.face} ${styles.front}`}>
-          <img src={imgSrc} alt={tTitle} className={styles.img} width={200} height={320} loading="lazy"/>
+        {/* FRONT */}
+        <div className={styles.front} aria-hidden={flipped}>
+          <img
+            src={imgSrc}
+            alt={alt}
+            className={styles.img}
+            width={200}
+            height={320}
+            loading="lazy"
+          />
         </div>
-        <div className={`${styles.face} ${styles.back}`}>
-          <h3 className={styles.title}>{tTitle}</h3>
-          <p className={styles.desc}>{tText}</p>
+
+        {/* BACK */}
+        <div className={styles.back} aria-hidden={!flipped}>
+          <img
+            src={backImg}
+            alt={`${alt} – retro`}
+            className={styles.img}
+            width={200}
+            height={320}
+            loading="lazy"
+          />
         </div>
       </div>
     </div>
