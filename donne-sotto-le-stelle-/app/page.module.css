@@ -13,48 +13,47 @@
   overflow: hidden;     
 }
 
-/* ✨ Звёздное небо без «сетки» */
+/* ✨ Более яркое звёздное небо */
 .main::before,
 .main::after {
   content: "";
   position: absolute;
-  inset: -10% -10%;           /* чуть больше области, чтобы при движении не оголялись края */
+  inset: -10% -10%;
   pointer-events: none;
   z-index: 0;
-  animation: moveStars 80s linear infinite, twinkle 6s ease-in-out infinite alternate;
+  animation: moveStars 80s linear infinite, twinkle 5s ease-in-out infinite alternate;
 }
 
-/* Слой 1 — крупнее и ярче, чуть «золотит» */
+/* Слой 1 — «золотистые» и крупнее */
 .main::before {
   background-image:
-    radial-gradient(rgba(255, 230, 160, .9) 1px, transparent 2px),
-    radial-gradient(rgba(255, 230, 160, .5) 1px, transparent 2px);
-  background-size: 140px 140px, 220px 220px;   /* разные сетки */
-  background-position: 0 0, 70px 35px;         /* смещение, чтобы не совпадали */
-  opacity: .18;
+    radial-gradient(rgba(255, 230, 160, .95) 1.5px, transparent 2.5px),
+    radial-gradient(rgba(255, 230, 160, .55) 1.2px, transparent 2.2px);
+  background-size: 110px 110px, 160px 160px;   /* плотнее */
+  background-position: 0 0, 55px 35px;
+  opacity: .28;                                /* было ~.18 */
+  filter: drop-shadow(0 0 2px rgba(255, 220, 150, .6));
 }
 
-/* Слой 2 — мельче и плотнее, движется медленнее */
+/* Слой 2 — белые, мельче и ещё плотнее */
 .main::after {
   background-image:
-    radial-gradient(rgba(255, 255, 255, .9) 1px, transparent 2px),
-    radial-gradient(rgba(255, 255, 255, .4) 1px, transparent 2px);
-  background-size: 180px 180px, 260px 260px;
-  background-position: 90px 20px, 30px 110px;
-  opacity: .12;
-  animation-duration: 110s, 7s;  /* медленнее «плывут», но мерцание отдельно */
+    radial-gradient(rgba(255, 255, 255, .95) 1.2px, transparent 2.2px),
+    radial-gradient(rgba(255, 255, 255, .5) 1px, transparent 2px);
+  background-size: 120px 120px, 180px 180px;
+  background-position: 70px 20px, 25px 85px;
+  opacity: .22;                                /* было ~.12 */
+  animation-duration: 110s, 6s;                /* движение медленнее, мерцание отдельно */
 }
 
-/* Движение звёзд */
+/* Анимации оставь как есть */
 @keyframes moveStars {
   from { transform: translate3d(0,0,0) rotate(0deg); }
-  to   { transform: translate3d(-80px,-80px,0) rotate(-0.5deg); } /* лёгкое вращение ломает сетку */
+  to   { transform: translate3d(-80px,-80px,0) rotate(-0.5deg); }
 }
-
-/* Мерцание (не синхронное за счёт двух слоёв) */
 @keyframes twinkle {
   0%   { filter: brightness(1); }
-  50%  { filter: brightness(1.35); }
+  50%  { filter: brightness(1.6); }  /* сильнее мерцают */
   100% { filter: brightness(1); }
 }
 
