@@ -80,19 +80,10 @@ export default function Home() {
         <h2 className="gold-text">Servizi</h2>
 
         <div className={styles.cardsContainer}>
-          <TarotCard
-            imgSrc="/tarot1.png"
-            backImg="/tarot1-back.png"
-          />
-          <TarotCard
-            imgSrc="/tarot2.png"
-            backImg="/tarot2-back.png"
-          />
-          <TarotCard
-            imgSrc="/tarot3.png"
-            backImg="/tarot3-back.png"
-          />
-        </div>
+  <TarotCard imgSrc="/tarot1.png" backImg="/tarot1-back.png" />
+  <TarotCard imgSrc="/tarot2.png" backImg="/tarot2-back.png" />
+  <TarotCard imgSrc="/tarot3.png" backImg="/tarot3-back.png" />
+</div>
 
         <div className={styles.sessionInfo}>
           <strong>Come si svolge una sessione?</strong>
