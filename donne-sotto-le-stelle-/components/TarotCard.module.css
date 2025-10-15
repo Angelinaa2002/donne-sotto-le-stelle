@@ -1,47 +1,65 @@
 .card{
   width:220px;
-  height:350px;
+  height:340px;
   perspective:1200px;
+  display:inline-block;
 }
 
-/* 3D-контейнер */
 .inner{
   position:relative;
   width:100%;
   height:100%;
   transform-style:preserve-3d;
-  transition:transform .8s cubic-bezier(.22,.61,.36,1), filter .3s ease, box-shadow .3s ease;
+  transition:
+    transform .66s cubic-bezier(.22,.61,.36,1),
+    filter .3s ease,
+    box-shadow .3s ease;
+  border-radius:18px;
+  will-change: transform;
 }
 
-/* Ховер/клик переворот */
-.card:hover .inner,
-.card.flipped .inner{ transform:rotateY(180deg); filter:brightness(1.03); }
+/* чуть поднимаем яркость при ховере */
+.card:hover .inner{ filter:brightness(1.05); }
 
-/* Общая база для лиц */
-.face{
+/* переворот */
+.flipped .inner{ transform:rotateY(180deg); }
+
+.front,
+.back{
   position:absolute;
   inset:0;
   display:flex;
-  justify-content:center;
   align-items:center;
-  border-radius:16px;
-  overflow:visible;
-  /* ВАЖНО: позволяем задней стороне рисоваться */
-  backface-visibility:visible;
-  -webkit-backface-visibility:visible;
-  transform:translateZ(1px); /* даём слой */
+  justify-content:center;
+
+  /* важно для флипа */
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+
+  border-radius:18px;
+
+  /* рамка + свечение */
+  box-shadow:
+    0 0 0 3px #d4af37 inset,                 /* золотая кромка */
+    0 0 0 10px rgba(0,0,0,0) inset,
+    0 0 24px rgba(212,175,55,.45),           /* мягкое свечение */
+    0 12px 25px rgba(0,0,0,.35);             /* падающая тень */
 }
 
-/* ПЕРЕДНЯЯ сторона */
+/* лёгкий «сияющий» фон на лицевой стороне */
 .front{
   z-index:2;
-  opacity:1;
-  transition:opacity .25s linear;
-  box-shadow:
-    0 0 0 3px #d4af37,
-    0 0 26px rgba(212,175,55,.55),
-    inset 0 0 0 2px rgba(0,0,0,.7);
-  background:transparent;
+  background:
+    radial-gradient(76% 60% at 50% 10%,
+      rgba(255,230,140,.22) 0%,
+      rgba(0,0,0,0) 60%),
+    transparent;
+}
+
+/* обратную сторону разворачиваем */
+.back{
+  transform:rotateY(180deg);
+  z-index:1;
 }
 
 .img{
@@ -50,49 +68,17 @@
   height:320px;
   object-fit:cover;
   border-radius:12px;
-}
 
-/* ЗАДНЯЯ сторона (текст) */
-.back{
-  transform:rotateY(180deg) translateZ(2px);
-  z-index:3;
-  opacity:0;
-  transition:opacity .25s linear .12s;
-  text-align:center;
-  padding:18px 14px;
-  color:#f5e6c8;
-  background:
-    radial-gradient(66% 60% at 50% 46%, rgba(212,175,55,.18), rgba(13,0,51,.0) 60%),
-    linear-gradient(180deg,#0b1240 0%, #0b0420 70%);
+  /* тонкая внутренняя золотая рамка + тень */
   box-shadow:
-    0 0 0 3px #d4af37,
-    0 0 26px rgba(212,175,55,.55),
-    inset 0 0 0 2px rgba(0,0,0,.7);
+    0 0 0 2px #d4af37 inset,
+    0 10px 20px rgba(0,0,0,.35);
+
+  /* фикс слоя для Safari/3D */
+  transform: translateZ(1px);
 }
 
-.title{ 
-  margin:0 0 10px;
-  font-size:1.15rem;
-  line-height:1.25;
-  color:#ffd86b;
-  text-shadow:0 0 10px rgba(255,216,107,.9), 0 0 18px rgba(255,216,107,.45);
-  font-weight:600;
-}
-.desc{
-  margin:0;
-  font-size:.92rem;
-  line-height:1.38;
-  opacity:.98;
-}
-
-/* Скрываем фронт, показываем бэк при флипе */
-.card:hover .front,
-.card.flipped .front{ opacity:0; pointer-events:none; }
-.card:hover .back,
-.card.flipped .back{ opacity:1; }
-
-/* Таблет/десктоп чуть крупнее */
-@media (min-width:1120px){
-  .card{ width:220px;height:355px; }
-  .img{  width:200px;height:325px; }
+@media (min-width:1180px){
+  .card{ width:240px; height:360px; }
+  .img { width:220px; height:340px; }
 }
