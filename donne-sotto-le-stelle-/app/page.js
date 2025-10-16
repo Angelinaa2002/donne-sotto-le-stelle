@@ -61,16 +61,16 @@ export default function Home() {
         </p>
       </section>
 
-      {/* CHI SONO */}
-      <section id="chi-sono" className={styles.sectionBlock}>
-        <h2 className="gold-text">Chi sono</h2>
+      {/* CHI SIAMO */}
+      <section id="chi-siamo" className={styles.sectionBlock}>
+        <h2 className="gold-text">Chi siamo</h2>
         <p>
-          Mi chiamo Concetta. Unisco la saggezza dei Tarocchi e pratico lo Yoga,
+          Siamo tre donne. Uniamo la saggezza dei Tarocchi e pratichiamo lo Yoga,
           aiutando le persone ad ascoltarsi, a ritrovare l’energia e a connettersi
           con la propria fonte interiore.
         </p>
         <p className={styles.quote}>
-          «Tutte le risposte sono già dentro di noi. Il mio compito è aiutarti ad
+          «Tutte le risposte sono già dentro di noi. Il nostro compito è aiutarti ad
           ascoltarle.»
         </p>
       </section>
